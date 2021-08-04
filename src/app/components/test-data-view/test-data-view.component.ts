@@ -22,14 +22,14 @@ export class TestDataViewComponent implements OnInit {
   }
 
   getAllCourseData(): void {
-    this.golfCourseDataService.fetchAllData().subscribe( res => {
-      this.testData_AllCourses = res;
+    this.golfCourseDataService.fetchAllData().subscribe( data => {
+      this.testData_AllCourses = data;
     });
   }
 
   getCourseData(id:string): void {
-    this.golfCourseDataService.fetchDataById(id).subscribe( res => {
-      this.testData_OneCourse = res;
+    this.golfCourseDataService.fetchDataById(id).subscribe( data => {
+      this.testData_OneCourse = data;
     });
   }
 

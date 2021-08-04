@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { Observable } from 'rxjs';
-// import { catchError, tap, map } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -18,11 +18,28 @@ export class GolfCourseDataService {
   constructor(private http: HttpClient) { }
 
   fetchAllData(): Observable<any> {
-    return this.http.get<any>(this.API_URL, this.httpOptions);
+    let url = this.API_URL;
+    return this.http.get<any>(url, this.httpOptions)
+      .pipe(
+        tap(() => console.log('fetching all data')),
+        catchError(this.handleError<any>('fetchAllData', []))
+      )
   }
 
   fetchDataById(id:string): Observable<any> {
-    return this.http.get<any>(`${this.API_URL}/${id}`);
+    let url = `${this.API_URL}/${id}`;
+    return this.http.get<any>(url)
+    .pipe(
+      tap(() => console.log(`fetching data by id: ${id}`)),
+      catchError(this.handleError<any>(`fetchDataById: ${url}`, []))
+    )
+  }
+
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.error(error);
+      return of(result as T);
+    };
   }
 
 }
