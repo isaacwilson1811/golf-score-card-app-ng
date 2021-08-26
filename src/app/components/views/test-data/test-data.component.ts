@@ -3,11 +3,11 @@ import { Component, OnInit } from '@angular/core';
 import { GolfCourseDataService } from 'src/app/services/golf-course-data.service';
 
 @Component({
-  selector: 'app-test-data-view',
-  templateUrl: './test-data-view.component.html',
-  styleUrls: ['./test-data-view.component.css']
+  selector: 'app-test-data',
+  templateUrl: './test-data.component.html',
+  styleUrls: ['./test-data.component.css']
 })
-export class TestDataViewComponent implements OnInit {
+export class TestDataComponent implements OnInit {
 
   testData_AllCourses: any = {};
   testData_OneCourse: any = {};
