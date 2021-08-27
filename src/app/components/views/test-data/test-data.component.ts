@@ -22,7 +22,7 @@ export class TestDataComponent implements OnInit {
   }
 
   getAllCourseData(): void {
-    this.golfCourseDataService.fetchAllData().subscribe( data => {
+    this.golfCourseDataService.fetchGolfCoursesData().subscribe( data => {
       this.testData_AllCourses = data;
     });
   }

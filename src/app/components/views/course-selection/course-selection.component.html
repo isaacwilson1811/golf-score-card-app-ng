@@ -1,1 +1,11 @@
-<p>course-selection works!</p>
+<h1>New Golf Score Card</h1>
+<p>Please select a Golf Course</p>
+
+<ul *ngFor="let course of courselist">
+  <li>{{course.name}} <img src="{{course.image}}" alt="{{course.name}}"></li>
+</ul>
+
+<pre>
+{{courselist | json}}
+</pre>
+

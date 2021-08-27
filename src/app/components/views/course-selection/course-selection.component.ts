@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GolfCourse, GolfCourseDataService } from 'src/app/services/golf-course-data.service';
 
 @Component({
   selector: 'app-course-selection',
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CourseSelectionComponent implements OnInit {
 
-  constructor() { }
+  public courselist: GolfCourse[] = [];
+
+  constructor(
+    private dataService: GolfCourseDataService
+  ) { }
 
   ngOnInit(): void {
+    this.getAllCourseData();
+  }
+
+  getAllCourseData(): void {
+    this.dataService.fetchGolfCoursesData().subscribe(data=>{
+      this.courselist = data.courses;
+    })
   }
 
 }

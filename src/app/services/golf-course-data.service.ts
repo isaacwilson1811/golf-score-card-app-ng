@@ -5,6 +5,18 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 
+// Data Object that API returns
+interface API_returnedObj {
+  courses: GolfCourse[]
+}
+
+// Data that I want
+export interface GolfCourse {
+  name:string,
+  id:string,
+  image:string
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -23,10 +35,9 @@ export class GolfCourseDataService {
 
   constructor(private http: HttpClient) { }
 
-  fetchAllData(): Observable<any> {
-    let url = this.API_URL;
-    // return this.http.get<any>(url, this.httpOptions)
-    return this.http.get<any>(url)
+  fetchGolfCoursesData(): Observable<API_returnedObj> {
+    const url = this.API_URL;
+    return this.http.get<API_returnedObj>(url)
       .pipe(
         tap(() => console.log('fetching all data')),
         catchError(this.handleError<any>('fetchAllData', this.defaultData))
