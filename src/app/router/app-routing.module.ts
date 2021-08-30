@@ -3,14 +3,14 @@ import { RouterModule, Routes } from '@angular/router';
 
 // View Components
 import { 
-  TestDataComponent,
-  CourseSelectionComponent
-} from '../components/views/';
+  CourseSelectionComponent,
+  CourseDetailsComponent
+} from '../components/views/index';
 
 const routes: Routes = [
   { path: '', redirectTo: 'new', pathMatch: 'full' },
   { path: 'new', component: CourseSelectionComponent },
-  { path: 'test', component: TestDataComponent }
+  { path: 'course/:id', component: CourseDetailsComponent }
 ];
 
 @NgModule({

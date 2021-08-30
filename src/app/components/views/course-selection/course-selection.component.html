@@ -1,11 +1,10 @@
 <h1>New Golf Score Card</h1>
 <p>Please select a Golf Course</p>
 
-<ul *ngFor="let course of courselist">
-  <li>{{course.name}} <img src="{{course.image}}" alt="{{course.name}}"></li>
+<div *ngIf="courseList$ | async as courseList">
+<pre>{{courseList | json}}</pre>
+<ul *ngFor="let course of courseList">
+  <li>{{course.name}} <img src="{{course.image}}" alt="{{course.name}}"> <a routerLink="/course/{{course.id}}">Link</a></li>
 </ul>
-
-<pre>
-{{courselist | json}}
-</pre>
+</div>
 

@@ -1,16 +1,10 @@
 import { Injectable } from '@angular/core';
-// import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
-
 import { Observable, of } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { catchError, tap, map } from 'rxjs/operators';
 
-// Data Object that API returns
-interface API_returnedObj {
-  courses: GolfCourse[]
-}
+interface API_Obj {courses: any[], data: any[]};
 
-// Data that I want
 export interface GolfCourse {
   name:string,
   id:string,
@@ -22,32 +16,24 @@ export interface GolfCourse {
 })
 export class GolfCourseDataService {
 
-  // Working URL
   private API_URL: string = 'https://golf-courses-api.herokuapp.com/courses';
-  // Bad URL for testing
-  // private API_URL: string = 'not a real url';
-
   private defaultData: object = {data: 'an error was caught, data stream was replaced with this object' };
-
-  // httpOptions = {
-  //   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-  // };
 
   constructor(private http: HttpClient) { }
 
-  fetchGolfCoursesData(): Observable<API_returnedObj> {
-    const url = this.API_URL;
-    return this.http.get<API_returnedObj>(url)
+  fetchGolfCourses(): Observable<GolfCourse[]> {
+    return this.http.get<API_Obj>(this.API_URL)
       .pipe(
-        tap(() => console.log('fetching all data')),
+        map(_=>_.courses),
         catchError(this.handleError<any>('fetchAllData', this.defaultData))
-      )
+      );
   }
 
-  fetchDataById(id:string): Observable<any> {
+  fetchCourseDetails(id:string): Observable<any> {
     const url = `${this.API_URL}/${id}`;
-    return this.http.get<any>(url)
+    return this.http.get<API_Obj>(url)
     .pipe(
+      map(_=>_.data),
       // tap(() => console.log(`fetching data by id: ${id}`)),
       catchError(this.handleError<any>(`fetchDataById: ${url}`, this.defaultData))
     )

@@ -6,8 +6,8 @@ import { HttpClientModule } from "@angular/common/http";
 import { AppRoutingModule } from './router/app-routing.module';
 // 'View' components are barrel exported from the file src/app/components/views/index.ts
 import { 
-  TestDataComponent,
-  CourseSelectionComponent
+  CourseSelectionComponent,
+  CourseDetailsComponent
 } from './components/views/';
 
 // Main app component
@@ -16,8 +16,8 @@ import { AppComponent } from './app.component';
 @NgModule({
   declarations: [
     AppComponent,
-    TestDataComponent,
-    CourseSelectionComponent
+    CourseSelectionComponent,
+    CourseDetailsComponent
   ],
   imports: [
     BrowserModule,

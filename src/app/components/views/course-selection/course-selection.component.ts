@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GolfCourse, GolfCourseDataService } from 'src/app/services/golf-course-data.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-course-selection',
@@ -8,20 +9,21 @@ import { GolfCourse, GolfCourseDataService } from 'src/app/services/golf-course-
 })
 export class CourseSelectionComponent implements OnInit {
 
-  public courselist: GolfCourse[] = [];
+  public courseList$!: Observable<GolfCourse[]>; // the ! is to declare a definite type
 
   constructor(
-    private dataService: GolfCourseDataService
+    private dataService: GolfCourseDataService,
   ) { }
 
   ngOnInit(): void {
-    this.getAllCourseData();
+    this.getCourseList$()
   }
 
-  getAllCourseData(): void {
-    this.dataService.fetchGolfCoursesData().subscribe(data=>{
-      this.courselist = data.courses;
-    })
+  getCourseList$(): void {
+    this.courseList$ = this.dataService.fetchGolfCourses()
+    // this.dataService.fetchGolfCoursesData().subscribe(data=>{
+    //   this.courselist = data;
+    // })
   }
 
 }

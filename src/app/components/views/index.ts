@@ -1,2 +1,2 @@
-export { CourseSelectionComponent } from '../views/course-selection/course-selection.component';
-export { TestDataComponent } from '../views/test-data/test-data.component';
+export { CourseSelectionComponent } from './course-selection/course-selection.component';
+export { CourseDetailsComponent } from './course-details/course-details.component';
