@@ -1,10 +1,19 @@
-<h1>New Golf Score Card</h1>
-<p>Please select a Golf Course</p>
+<h1>Choose a Golf Course</h1>
 
-<div *ngIf="courseList$ | async as courseList">
-<pre>{{courseList | json}}</pre>
-<ul *ngFor="let course of courseList">
-  <li>{{course.name}} <img src="{{course.image}}" alt="{{course.name}}"> <a routerLink="/course/{{course.id}}">Link</a></li>
-</ul>
+<div *ngIf="courseList$ | async as courseList; else loading" class="flex">
+  <div
+    *ngFor="let course of courseList"
+    routerLink="/course/{{course.id}}"
+    class="image-link"
+    style="background-image: url({{course.image}});"
+  >
+    <p>{{course.name}}</p>
+  </div>
 </div>
+
+<ng-template #loading>
+  <div>
+    <h2>Loading Golf Courses...</h2>
+  </div>
+</ng-template>
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { GolfCourseDataService } from 'src/app/services/golf-course-data.service';
+import { CourseDetails, GolfCourseDataService } from 'src/app/services/golf-course-data.service';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 })
 export class CourseDetailsComponent implements OnInit {
 
-  public courseDetails$!: Observable<any>;
+  public courseDetails$!: Observable<CourseDetails>;
 
   constructor(
     private route: ActivatedRoute,

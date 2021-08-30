@@ -8,8 +8,8 @@ import {
 } from '../components/views/index';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'new', pathMatch: 'full' },
-  { path: 'new', component: CourseSelectionComponent },
+  { path: '', redirectTo: 'choose-course', pathMatch: 'full' },
+  { path: 'choose-course', component: CourseSelectionComponent },
   { path: 'course/:id', component: CourseDetailsComponent }
 ];
 
