@@ -1,0 +1,11 @@
+<div>
+  <a routerLink="choose-course" (click)="resetSelectedCourse()" style="font-size: 2em;">Start Over</a>
+</div>
+
+<div *ngIf=" storageChanges$ | async as changes">
+  <pre>Session Storage Changes:
+{{ changes | json }}
+</pre>
+  
+Selected Course: {{ changes.value.selectedGolfCourse }}
+</div>

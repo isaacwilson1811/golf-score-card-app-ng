@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GolfCourse, GolfCourseDataService } from 'src/app/services/golf-course-data.service';
 import { Observable } from 'rxjs';
+import { SessionStorageService } from 'src/app/services/session-storage.service';
 
 @Component({
   selector: 'app-course-selection',
@@ -13,17 +14,20 @@ export class CourseSelectionComponent implements OnInit {
 
   constructor(
     private dataService: GolfCourseDataService,
+    private storageService: SessionStorageService
   ) { }
 
   ngOnInit(): void {
-    this.getCourseList$()
+    this.storageService.set({selectedGolfCourse: 'none'});
+    this.getCourseList$();
   }
 
   getCourseList$(): void {
     this.courseList$ = this.dataService.fetchGolfCourses()
-    // this.dataService.fetchGolfCoursesData().subscribe(data=>{
-    //   this.courselist = data;
-    // })
+  }
+
+  saveSelectedCourse(id:string): void {
+    this.storageService.set({selectedGolfCourse: id})
   }
 
 }

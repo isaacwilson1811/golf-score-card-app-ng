@@ -6,6 +6,7 @@
     routerLink="/course/{{course.id}}"
     class="image-link"
     style="background-image: url({{course.image}});"
+    (click)="saveSelectedCourse(course.id)"
   >
     <p>{{course.name}}</p>
   </div>

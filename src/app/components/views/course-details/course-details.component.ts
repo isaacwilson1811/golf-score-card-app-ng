@@ -14,11 +14,12 @@ export class CourseDetailsComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private golfCourseDataService: GolfCourseDataService
+    private golfCourseDataService: GolfCourseDataService,
     ) { }
 
   ngOnInit(): void {
-    this.getCourseDetails$(this.route.snapshot.params.id);
+    const courseID = this.route.snapshot.params['id']
+    this.getCourseDetails$(courseID);
   }
 
   getCourseDetails$(id:string): void {

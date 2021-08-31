@@ -12,12 +12,14 @@ import {
 
 // Main app component
 import { AppComponent } from './app.component';
+import { TopNavComponent } from './components/ui/top-nav/top-nav.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CourseSelectionComponent,
-    CourseDetailsComponent
+    CourseDetailsComponent,
+    TopNavComponent
   ],
   imports: [
     BrowserModule,
